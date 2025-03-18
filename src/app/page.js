@@ -31,10 +31,6 @@ export default function Home() {
         <ol>
      Ankappa
         </ol>
-
-        <ol>
-     Anki
-        </ol>
         <div className={styles.ctas}>
           <a
             className={styles.primary}
