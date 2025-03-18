@@ -31,6 +31,9 @@ export default function Home() {
         <ol>
      Ankappa
         </ol>
+        <ol>
+     Ankappa
+        </ol>
         <div className={styles.ctas}>
           <a
             className={styles.primary}
