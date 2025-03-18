@@ -13,18 +13,7 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol>
-     removed page .js branch
-        </ol>
-        <ol>
-     removed page .js branch
-        </ol>
-        <ol>
-     removed page .js branch
-        </ol>
-        <ol>
-     removed page .js branch
-        </ol>
+   Ankappa
 
         <div className={styles.ctas}>
           <a
