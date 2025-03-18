@@ -13,11 +13,17 @@ export default function Home() {
           height={38}
           priority
         />
- <ol>
-          <li>
-           DEV code is modifiied</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
+        <ol>
+     removed page .js branch
+        </ol>
+        <ol>
+     removed page .js branch
+        </ol>
+        <ol>
+     removed page .js branch
+        </ol>
+        <ol>
+     removed page .js branch
         </ol>
 
         <div className={styles.ctas}>
