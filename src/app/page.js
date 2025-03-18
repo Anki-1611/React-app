@@ -13,7 +13,7 @@ export default function Home() {
           height={38}
           priority
         />
-   Ankappa Ankdferf
+   Ankappa Ankdferf Ankappa
 
         <div className={styles.ctas}>
           <a
