@@ -14,10 +14,16 @@ export default function Home() {
           priority
         />
         <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantldwerewetwy.</li>
+     removed page .js branch
+        </ol>
+        <ol>
+     removed page .js branch
+        </ol>
+        <ol>
+     removed page .js branch
+        </ol>
+        <ol>
+     removed page .js branch
         </ol>
 
         <div className={styles.ctas}>
