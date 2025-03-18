@@ -13,7 +13,7 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol>
+ <ol>
           <li>
            DEV code is modifiied</code>.
           </li>
