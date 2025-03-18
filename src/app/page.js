@@ -13,7 +13,12 @@ export default function Home() {
           height={38}
           priority
         />
-   Ankappa Ankdferf Ankappa
+ <ol>
+          <li>
+           DEV code is modifiied</code>.
+          </li>
+          <li>Save and see your changes instantly.</li>
+        </ol>
 
         <div className={styles.ctas}>
           <a
