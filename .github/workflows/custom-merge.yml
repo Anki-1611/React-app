@@ -1,0 +1,22 @@
+name: Enforce Custom Merge Commit Message
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  update-merge-message:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update Merge Commit Message
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "actions@github.com"
+          git fetch origin main
+          git checkout main
+          git commit --amend -m "Merged PR Ankappa #${{ github.event.pull_request.number }} - Standardized Commit"
+          git push origin main --force
