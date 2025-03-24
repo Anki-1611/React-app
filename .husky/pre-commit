@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running ESLint..."
+npx eslint "src/**/*.{js,ts}" || exit 1
+
+
+echo "ESLint Passed! Proceeding with commit..."
+

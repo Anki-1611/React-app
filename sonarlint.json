@@ -1,0 +1,10 @@
+{
+  "sonarlint.ls.connectionTimeoutMs": 30000,
+
+  "sonarlint.rules": {
+    "typescript:S100": { "level": "error" }, 
+    "typescript:S125": { "level": "warning" }, 
+    "typescript:S4325": { "level": "error" }, 
+    "typescript:S1854": { "level": "warning" }
+  }
+}
