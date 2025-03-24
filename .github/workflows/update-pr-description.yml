@@ -3,11 +3,11 @@ name: Update PR Description with Commits
 on:
   pull_request:
     types:
-      - closed  # Trigger when PR is merged or closed
+      - closed  # Runs when a PR is closed
 
 jobs:
   update-pr:
-    if: github.event.pull_request.merged == true  # Only if PR is merged
+    if: github.event.pull_request.merged == true  # Only run if PR is merged
     runs-on: ubuntu-latest
 
     steps:
@@ -22,8 +22,12 @@ jobs:
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits" \
             | jq -r '.[].sha')
 
-          echo "COMMITS=$COMMITS" >> $GITHUB_ENV
-          echo "Commits found: $COMMITS"
+          # Convert multi-line output to a single line with newlines escaped
+          ESCAPED_COMMITS=$(echo "$COMMITS" | sed ':a;N;$!ba;s/\n/\\n/g')
+
+          echo "COMMITS<<EOF" >> $GITHUB_ENV
+          echo "$ESCAPED_COMMITS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Update PR description
         run: |
