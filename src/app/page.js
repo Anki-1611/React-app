@@ -13,11 +13,6 @@ const Navbar = () => {
   );
 };
 
-const geistSans1= Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 // Footer.jsx
 const Footer = () => {
   return (
