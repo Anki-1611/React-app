@@ -7,41 +7,40 @@ on:
 
 jobs:
   update-pr:
-    if: github.event.pull_request.merged == true  # Only if PR is merged
+    if: github.event.pull_request.merged == true  # Only run if PR is merged
     runs-on: ubuntu-latest
 
     steps:
       - name: Get commit hashes
         id: get_commits
         run: |
+          # Fetch commits from the merged PR
           COMMITS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits" \
             | jq -r '.[].sha')
 
-          # Convert commits into a formatted list
-          FORMATTED_COMMITS=$(echo "$COMMITS" | awk '{print "- " $0}')
+          # Convert commit list to formatted markdown
+          FORMATTED_COMMITS=$(echo "$COMMITS" | awk '{print "- " $0}' | tr '\n' ' ')
 
-          # Store as output (not env) to avoid format issues
-          echo "COMMITS<<EOF" >> $GITHUB_ENV
-          echo "$FORMATTED_COMMITS" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # Set the output variable correctly
+          echo "commits=$FORMATTED_COMMITS" >> $GITHUB_ENV
 
       - name: Update PR description
         run: |
-          # Fetch current PR description
+          # Fetch the current PR description
           DESCRIPTION=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" \
             | jq -r '.body')
 
-          # Append commits
+          # Append the commit list
           UPDATED_DESCRIPTION="$DESCRIPTION
 
-          **Commits included in this PR:**
-          $COMMITS"
+          **Commits included in this PR:**  
+          ${{ env.commits }}"
 
-          # Update PR description
+          # Update the PR description
           curl -X PATCH -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             -d "{\"body\": \"$UPDATED_DESCRIPTION\"}" \
