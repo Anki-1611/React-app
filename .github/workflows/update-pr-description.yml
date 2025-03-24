@@ -11,36 +11,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Get commit hashes
         id: get_commits
         run: |
+          # Fetch commits from the merged PR
           COMMITS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits" \
             | jq -r '.[].sha')
 
-          # Convert multi-line output to a single line with newlines escaped
-          ESCAPED_COMMITS=$(echo "$COMMITS" | sed ':a;N;$!ba;s/\n/\\n/g')
+          # Convert commit list to formatted markdown
+          FORMATTED_COMMITS=$(echo "$COMMITS" | awk '{print "- " $0}' | tr '\n' ' ')
 
-          echo "COMMITS<<EOF" >> $GITHUB_ENV
-          echo "$ESCAPED_COMMITS" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # Set the output variable correctly
+          echo "commits=$FORMATTED_COMMITS" >> $GITHUB_ENV
 
       - name: Update PR description
         run: |
+          # Fetch the current PR description
           DESCRIPTION=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" \
             | jq -r '.body')
 
+          # Append the commit list
           UPDATED_DESCRIPTION="$DESCRIPTION
 
-          **Commits included in this PR:**
-          $COMMITS"
+          **Commits included in this PR:**  
+          ${{ env.commits }}"
 
+          # Update the PR description
           curl -X PATCH -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             -d "{\"body\": \"$UPDATED_DESCRIPTION\"}" \
