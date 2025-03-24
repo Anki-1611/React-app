@@ -1,18 +1,39 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// Navbar.jsx
+const Navbar = () => {
+  return (
+    <nav className="bg-gray-800 p-4">
+      <ul className="flex gap-8">
+        <li><a href="#home" className="text-white">Home</a></li>
+        <li><a href="#about" className="text-white">About</a></li>
+        <li><a href="#contact" className="text-white">Contact</a></li>
+      </ul>
+    </nav>
+  );
+};
 
-export default function Home() {
-  return <div>
-    <div>this is DEV branch</div>
-    <div>this is DEV branch added again</div>
-    <div>this is DEV branch added again</div>
-    <div>this is DEV branch added again</div>
-    <div>this is DEV branch added again</div>
-    <div>this is DEV branch added again 3:44</div>
-    <div>this is DEV branch added again 3:46</div>
-    <div>this is DEV branch added again 4:00</div>
-    <div>this is DEV branch added again 4:01</div>
-    <div>this is DEV branch added again 8:12</div>
-    <div>this is DEV branch added again 8:14</div>
-  </div>;
-}
+// Footer.jsx
+const Footer = () => {
+  return (
+    <footer className="bg-gray-800 text-white p-4 text-center">
+      <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+  );
+};
+
+// App.jsx
+const App = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      
+      <main className="flex-grow p-8">
+        <h1 className="text-2xl font-bold mb-4">Welcome to our website</h1>
+        <p>This is the main content area.</p>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
