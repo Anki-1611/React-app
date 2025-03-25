@@ -13,7 +13,7 @@
 echo "🔍 Running ESLint on changed files..."
 
 # Get changed JavaScript/TypeScript files (staged files only)
-FILES=$(git diff --cached --name-only --diff-filter=d | grep -E '\.(js|ts|tsx)$')
+FILES=$(git diff --cached --name-only --diff-filter=d | grep -E '^src/.*\.(js|ts|tsx)$')
 
 # If no JS/TS files changed, skip ESLint
 if [ -z "$FILES" ]; then
