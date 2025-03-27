@@ -35,7 +35,7 @@ export default [
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
       "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/exhaustive-deps": "error",
 
       // TypeScript
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
@@ -44,6 +44,7 @@ export default [
       // SonarJS Rules
       "sonarjs/no-duplicate-string": "warn",
       "sonarjs/cognitive-complexity": ["warn", 15],
+
 
       // Accessibility
       "jsx-a11y/anchor-is-valid": "warn",
