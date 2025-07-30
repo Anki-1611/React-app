@@ -8,7 +8,6 @@ const Navbar = () => {
         <li><a href="#contact" className="text-white">Contact</a></li>
         <li><a href="#contact" className="text-white">Blog dev 21nd test </a></li>
          <li><a href="#contact" className="text-white">Blog dev 22nd test </a></li>
-          <li><a href="#contact" className="text-white">Blog dev 23nd test </a></li>
       </ul>
     </nav>
   );
