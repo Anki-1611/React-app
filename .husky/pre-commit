@@ -1,0 +1,36 @@
+# #!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+
+# echo "Running ESLint..."
+# npx eslint "src/**/*.{js,ts}" || exit 1
+
+
+# echo "ESLint Passed! Proceeding with commit..."
+
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Running ESLint on changed files..."
+
+# Get changed JavaScript/TypeScript files (staged files only)
+FILES=$(git diff --cached --name-only --diff-filter=d | grep -E '^src/.*\.(js|ts|tsx)$')
+
+# If no JS/TS files changed, skip ESLint
+if [ -z "$FILES" ]; then
+  echo "✅ No JavaScript/TypeScript files changed. Skipping ESLint."
+  exit 0
+fi
+
+echo "📂 Files to lint: $FILES"
+
+# Run ESLint with auto-fix
+npx eslint --fix $FILES
+STATUS=$?
+
+if [ $STATUS -ne 0 ]; then
+  echo "❌ ESLint found errors! Fix them before committing."
+  exit 1
+fi
+
+echo "✅ ESLint Passed! Proceeding with commit..."
+exit 0
