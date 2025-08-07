@@ -6,13 +6,11 @@ const Navbar = () => {
         <li><a href="#home" className="text-white">Home</a></li>
         <li><a href="#about" className="text-white">About</a></li>
         <li><a href="#contact" className="text-white">Contact</a></li>
-        <li><a href="#contact" className="text-white">Blog 123</a></li>
       </ul>
     </nav>
   );
 };
 
-// Footer.jsx
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white p-4 text-center">
