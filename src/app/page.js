@@ -3,11 +3,36 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 p-4">
       <ul className="flex gap-8">
-        <li><a href="#home" className="text-white">Home</a></li>
-        <li><a href="#about" className="text-white">About</a></li>
-        <li><a href="#contact" className="text-white">Contact</a></li>
-         <li><a href="#contact" className="text-white">Cheey pick</a></li>
-<li><a href="#contact" className="text-white">PR</a></li>
+        <li>
+          <a href="#home" className="text-white">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#about" className="text-white">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="text-white">
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="text-white">
+            Cheey pick
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="text-white">
+            PR
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="text-white">
+            testing revert{" "}
+          </a>
+        </li>
       </ul>
     </nav>
   );
